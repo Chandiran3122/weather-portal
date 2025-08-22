@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Weather Portal</title>
+  <link rel="icon" href="weathericon.png" />
+  <meta name="description" content="Clean, weather portal with current conditions and 6-day forecast." />
+  <meta name="theme-color" content="#0a84ff" />
+  <meta property="og:title" content="Weather Portal" />
+  <meta property="og:description" content="Current weather and 6-day forecast in a fast, elegant UI." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header / Brand -->
+  <header class="site-header" role="banner">
+    <div class="container row align-center space-between">
+      <a class="brand" href="/" aria-label="Weather Portal Home">
+        <span class="brand-mark" aria-hidden="true">⛅</span>
+        <span class="brand-text">Weather Portal</span>
+      </a>
+
+      <nav class="site-actions" aria-label="Quick actions">
+        <button id="unitBtn" class="btn secondary" aria-live="polite" aria-atomic="true">Switch to °F</button>
+        <button id="modeBtn" class="btn ghost" title="Toggle color theme">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="site-main" id="main" role="main">
+    <div class="container">
+      <!-- Hero / Search -->
+      <section class="hero card center-card">
+        <h1 class="hero-title">Find weather anywhere</h1>
+        <p class="hero-sub">Type a city and get realtime conditions with a 6-day outlook.</p>
+
+        <div class="input-group" role="search">
+          <input id="cityInput" class="input" type="text" placeholder="Search by city (e.g., Chennai)" aria-label="City name" list="cityList" />
+         <!-- <datalist id="cityList">
+            <option value="Chennai"></option>
+            <option value="Mumbai"></option>
+            <option value="Delhi"></option>
+            <option value="Kolkata"></option>
+            <option value="Bengaluru"></option>
+          </datalist>-->
+          <button id="refreshBtn" class="icon-btn" title="Refresh page" aria-label="Refresh page">🔄</button>
+          <button id="searchBtn" class="btn" aria-label="Search">🔍 Search</button>
+        </div>
+
+        <div class="search-history">
+          <label for="historySelect" class="sr-only">Recent searches</label>
+          <select id="historySelect" class="select">
+            <option value="">Recent searches</option>
+          </select>
+          <button id="clearHistoryBtn" class="btn danger outline">Clear</button>
+        </div>
+
+        <p id="errorMsg" class="alert hidden" role="alert">City not found. Please try another query.</p>
+        <div id="loader" class="loader hidden" aria-live="polite">Loading…</div>
+      </section>
+
+      <!-- Results -->
+      <section class="results grid">
+        <article id="weatherBox" class="card hidden" aria-live="polite">
+          <h2 id="cityName" class="card-title">City, Country</h2>
+          <img id="weatherIcon" alt="Weather icon" class="weather-icon" />
+          <p id="temperature" class="metric"></p>
+          <p id="description"></p>
+          <p id="humidity"></p>
+        </article>
+
+        <aside id="forecastBox" class="card hidden">
+          <h3 class="card-title">6-Day Forecast</h3>
+          <div id="forecastCards" class="forecast-grid" aria-live="polite"></div>
+        </aside>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© 2025 Weather Portal. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+/* === Design Tokens === */
+:root {
+  --bg1:#f6fbff;
+  --bg2:#eef6ff;
+  --text:#1a1f36;
+  --muted:#5b6476;
+  --brand:#0a84ff;
+  --brand-600:#086bd1;
+  --card:rgba(255,255,255,0.9);
+  --ring:rgba(10,132,255,0.4);
+  --success:#2fbf71;
+  --danger:#e14242;
+  --shadow:0 10px 30px rgba(16,24,40,.08);
+}
+
+/* Explicit Light & Dark modes */
+html.light {
+  --bg1:#f6fbff;
+  --bg2:#eef6ff;
+  --text:#1a1f36;
+  --muted:#5b6476;
+  --card:rgba(255,255,255,0.9);
+  --shadow:0 10px 30px rgba(16,24,40,.08);
+}
+
+html.dark {
+  --bg1:#0f141b;
+  --bg2:#111827;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --card:rgba(22,28,36,0.9);
+  --shadow:0 10px 30px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial;
+  color:var(--text);
+  background: radial-gradient(1200px 600px at 10% 10%, var(--bg2), transparent),
+              linear-gradient(180deg, var(--bg1), var(--bg2));
+}
+
+/* Layout */
+.container{max-width:1100px;margin-inline:auto;padding:24px}
+.row{display:flex;gap:16px}
+.align-center{align-items:center}
+.space-between{justify-content:space-between}
+.grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap:20px;
+}
+
+.site-header{
+  position:sticky;top:0;z-index:100;
+  backdrop-filter:saturate(150%) blur(8px);
+  background:color-mix(in lab, var(--card) 70%, transparent);
+  border-bottom:1px solid color-mix(in lab, var(--text) 10%, transparent);
+}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:700}
+.brand-mark{font-size:1.6rem}
+.brand-text{letter-spacing:.2px}
+
+.site-actions .btn{margin-left:8px}
+
+.site-main{padding-block:24px}
+.hero{padding:24px 20px}
+.hero-title{margin:0 0 6px 0;font-size:clamp(1.6rem,2.2vw,2.2rem)}
+.hero-sub{margin:0;color:var(--muted)}
+
+.results.grid{margin-top:20px}
+.results .card:first-child{grid-column: span 6}
+.results .card:last-child{grid-column: span 6}
+@media (max-width: 900px){
+  .results .card:first-child,
+  .results .card:last-child{grid-column:1 / -1}
+}
+
+/* Cards */
+.card{
+  background:var(--card);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  border:1px solid color-mix(in lab, var(--text) 8%, transparent);
+  padding:20px;
+}
+.card-title{margin:0 0 .5rem 0}
+
+/* Inputs */
+.input-group{
+  display:flex;align-items:center;gap:8px;margin-top:16px;
+  background: white;
+  border-radius:12px;
+  padding:6px;
+  border:1px solid color-mix(in lab, var(--text) 12%, transparent);
+  box-shadow: inset 0 0 0 1px transparent;
+}
+html.dark .input-group{background:#1b2530}
+.input{
+  flex:1;border:none;background:transparent;color:inherit;
+  padding:10px 12px;font-size:16px;outline:none;
+}
+.input:focus{box-shadow: 0 0 0 4px var(--ring);border-radius:8px}
+.select{padding:8px 10px;border-radius:10px;border:1px solid color-mix(in lab, var(--text) 12%, transparent);background:transparent;color:inherit}
+
+.btn{
+  appearance:none;border:none;border-radius:10px;
+  padding:10px 14px;font-weight:600;cursor:pointer;
+  background:var(--brand);color:#fff;transition:.2s transform ease, .2s background ease;
+}
+.btn:hover{background:var(--brand-600);transform:translateY(-1px)}
+.btn.secondary{background:#e9f3ff;color:#0a4da8}
+.btn.secondary:hover{background:#d9ebff}
+.btn.ghost{background:transparent;border:1px solid color-mix(in lab, var(--text) 12%, transparent);color:inherit}
+.btn.danger{background:var(--danger)}
+.btn.danger.outline{background:transparent;color:var(--danger);border:1px solid var(--danger)}
+.icon-btn{
+  border:none;background:#e9f3ff;border-radius:10px;padding:8px 10px;cursor:pointer;
+}
+.icon-btn:hover{filter:brightness(.95)}
+
+/* Weather specifics */
+.weather-icon{width:100px;height:100px;object-fit:contain}
+.metric{font-size:1.25rem;font-weight:700}
+
+/* Forecast */
+.forecast-grid{
+  display:grid;
+  grid-template-columns: repeat(7, minmax(110px,1fr));
+  gap:10px;
+}
+@media (max-width:700px){
+  .forecast-grid{grid-template-columns: repeat(3, minmax(110px,1fr));}
+}
+.forecast-card{
+  padding:12px;border-radius:12px;
+  background:color-mix(in lab, var(--card) 90%, transparent);
+  border:1px solid color-mix(in lab, var(--text) 8%, transparent);
+  text-align:center;
+  box-shadow:var(--shadow);
+}
+.forecast-card h4{margin:0 0 6px 0;font-size:0.95rem}
+
+/* Alerts & Loader */
+.alert{margin-top:10px;color:#fff;background:var(--danger);padding:10px;border-radius:8px}
+.loader{margin-top:12px}
+.hidden{display:none !important}
+
+/* Footer */
+.site-footer{padding:20px 0;border-top:1px solid color-mix(in lab, var(--text) 10%, transparent);opacity:.9}
+
+/* Accessibility */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+
+
+/* === Center Hero Card === */
+.center-card {
+  max-width: 600px;
+  margin: 0 auto;   /* center horizontally */
+  text-align: center;
+}
+
+/* Forecast grid fix */
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 16px;
+}
+.forecast-card {
+  padding:12px;
+  border-radius:12px;
+  background:color-mix(in lab, var(--card) 90%, transparent);
+  border:1px solid color-mix(in lab, var(--text) 8%, transparent);
+  text-align:center;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+.forecast-card h4{margin:0 0 6px 0;font-size:0.95rem}
+
+
+
+/* Footer fixed at bottom and centered */
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main {
+  flex: 1; /* pushes footer to the bottom */
+}
+
+.site-footer {
+  text-align: center;       /* center the text */
+  padding: 20px 0;
+  border-top: 1px solid color-mix(in lab, var(--text) 10%, transparent);
+  opacity: .9;
+  margin-top: auto;         /* ensures footer stays at bottom */
+}
